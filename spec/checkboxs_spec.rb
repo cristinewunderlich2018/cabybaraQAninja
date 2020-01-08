@@ -1,31 +1,31 @@
 describe 'caixa de seleção', :checkbox do
     
-    #colcoar o visit para todos os cenários
+    ##colcoar o visit para todos os cenários
     before(:each) do
-        visit 'https://training-wheels-protocol.herokuapp.com/checkboxes'
+        visit '/checkboxes'
     end
 
     it 'marcando uma opção' do
-        #marcar o filme Thor do tipo checkbox
+        ##marcar o filme Thor do tipo checkbox
         check('thor')
     end
 
     it 'desmarcando uma opção' do
-        # desmar apenas se já estiver selecionado
+        ##desmar apenas se já estiver selecionado
         uncheck('antman')
     end
 
     it 'marcando com find set true' do
-        #buscar o elemento
+        ##buscar o elemento
         find('input[value=cap]').set(true)
     end
 
     it 'desmarcando com find set false' do
-        #busca o elemento
+        ##busca o elemento
         find('input[value=guardians]').set(false)
     end
 
-    #vai executar o método para cada cenário
+    ##vai executar o método para cada cenário
     after(:each) do
         sleep 3
     end

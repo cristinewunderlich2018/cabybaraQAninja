@@ -1,6 +1,6 @@
 describe 'Cadastro', :login3 do
     before(:each) do
-        visit 'https://training-wheels-protocol.herokuapp.com/access'
+        visit '/access'
     end
 
     it 'com sucesso' do
@@ -14,7 +14,7 @@ describe 'Cadastro', :login3 do
         #loginForm.find('input[name=username]').set 'stark'
         #loginForm.find('input[name=password]').set 'jarvis!'
        
-        #forma mais elegante de trabalhar com ESCOPO
+        ##forma mais elegante de trabalhar com ESCOPO
         within('#login') do
             find('input[name=username]').set 'stark'
             find('input[name=password]').set 'jarvis!'
@@ -30,7 +30,7 @@ describe 'Cadastro', :login3 do
             find('input[name=password]').set '123456'
         end
 
-        #clicar no elemento que é um link
+        ##clicar no elemento que é um link
         click_link 'Criar Conta'
         expect(find('#result')).to have_content 'Dados enviados. Aguarde aprovação do seu cadastro!'
     end

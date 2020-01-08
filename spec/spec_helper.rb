@@ -13,9 +13,29 @@ RSpec.configure do |config|
   config.shared_context_metadata_behavior = :apply_to_host_groups
 
   config.include Capybara::DSL
+
+  ##antes de cada cenário redimencionar o browser
+  config.before(:example) do
+      page.current_window.resize_to(1200,800)
+  end
+
+  ##passando no nome do cenário para gerar o nome do arquivo
+  config.after(:example) do |e|
+    ##pega o nome e substitui os espaços por _
+    cenario = e.description.gsub(/[^A-Za-z0-9 ]/,'').tr(' ','_')
+    ##pegar evidencia dos testes que falham
+    page.save_screenshot('log/' + cenario + '.png') if e.exception
+  end
+
 end
 
 Capybara.configure do |config|
-  config.default_driver = :selenium
+  ##sem subir o navegador
+  config.default_driver = :selenium_chrome_headless
+  ##com o navegador
+  #config.default_driver = :selenium_chrome
   config.default_max_wait_time = 5
+  ##definir URL padrão do sistama
+  config.app_host = 'https://training-wheels-protocol.herokuapp.com'
+
 end
